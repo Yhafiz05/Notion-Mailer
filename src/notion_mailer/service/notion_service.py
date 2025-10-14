@@ -1,9 +1,9 @@
 from notion_client import Client
+from notion_mailer.mapper.mapper_page import map_to_page_dto
 import os
 from dotenv import load_dotenv
 
-
-class NotionClient :
+class NotionService :
     
     def __init__(self):
         load_dotenv()
@@ -17,7 +17,8 @@ class NotionClient :
             list: List of all pages
         """
         response = self.client.databases.query(database_id=self.database_id) 
-        return response["results"]
+        response_dto = map_to_page_dto(response["results"])
+        return response_dto
     
     def get_page_prospect(self) -> list:
         """Retrieve pages with A Prospecter status
@@ -34,7 +35,8 @@ class NotionClient :
                 }
             }
         )
-        return response["results"]
+        response_dto = map_to_page_dto(responses["results"])
+        return response_dto
     
     def update_page_status(self, page_id: str, status: str) -> None :
         """Update the status of a page
@@ -69,5 +71,6 @@ class NotionClient :
                 }
             }
         )
-        return response["results"]
+        response_dto = map_to_page_dto(response["results"])
+        return response_dto
     

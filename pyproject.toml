@@ -1,0 +1,19 @@
+[project]
+name = "Notion-Mailer"
+description = "Automating the mail sendding for finding a job"
+authors = [
+    {name = "Hafiz Yaolire"}
+]
+version = "1.0.0"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov"
+]
+
+[tool.setuptools.packages.find]
+where = ["./src"]
+include = ["notion_mailer"]
