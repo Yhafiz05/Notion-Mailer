@@ -26,7 +26,7 @@ class SmtpClient():
             content (str): Body of the mail
         """
         ssl_context = ssl.create_default_context()
-        msg = MIMEMultipart()
+        msg = MIMEMultipart("alternative")
         msg["FROM"] = self.sender
         msg["TO"] = recipient
         msg["Subject"] = subject

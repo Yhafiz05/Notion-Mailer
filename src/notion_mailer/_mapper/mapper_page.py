@@ -1,4 +1,4 @@
-from notion_mailer.dto.pageDTO import PageDTO
+from notion_mailer._dto.pageDTO import PageDTO
 
 def map_to_page_dto(responses: list[dict]) -> list[PageDTO]:
     """

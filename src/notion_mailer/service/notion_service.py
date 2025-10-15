@@ -1,5 +1,5 @@
 from notion_client import Client
-from notion_mailer.mapper.mapper_page import map_to_page_dto
+from notion_mailer._mapper.mapper_page import map_to_page_dto
 import os
 from dotenv import load_dotenv
 
