@@ -35,7 +35,7 @@ class NotionService :
                 }
             }
         )
-        response_dto = map_to_page_dto(responses["results"])
+        response_dto = map_to_page_dto(response["results"])
         return response_dto
     
     def update_page_status(self, page_id: str, status: str) -> None :

@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 
 class SmtpClient():
     
-    def __init__(self):
+    def __init__(self) -> None:
         load_dotenv()
         self.sender = os.getenv("MAIL_USER")
         self.password = os.getenv("MAIL_PASS")
@@ -17,7 +17,7 @@ class SmtpClient():
         self.server = None
         
 
-    def send_mail(self, recipient: str, subject: str, content: str):
+    def send_mail(self, recipient: str, subject: str, content: str) -> None:
         """Send a mail to a recipient
 
         Args:

@@ -1,4 +1,4 @@
-from notion_mailer.mapper.mapper_page import map_to_page_dto
+from notion_mailer._mapper.mapper_page import map_to_page_dto
 import json
 
 def test_map_to_dto():
