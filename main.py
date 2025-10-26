@@ -1,5 +1,6 @@
 from pprint import pprint
 from notion_mailer.service.notion_service import NotionService
+from notion_mailer.service.notion_summirizer import NotionSummarizer
 from notion_mailer.mailing.smtp_client import SmtpClient
 def main():
     notion = NotionService()
@@ -13,7 +14,11 @@ def main():
     #mail_body = "Bonjour \nVeuillez reçevoir cette candidature\nCordialement,\nMeline Biguet"
     #mail = SmtpClient()
     #mail.send_mail("hyaolire@gmail.com", "Candidature spontanée", mail_body)
-    pprint(notion.get_pages())
+    pages = notion.get_pages()
+    summarizer = NotionSummarizer()
+    summary = summarizer.summarize_all(pages)
+    pprint(summary)
+    
 
 if __name__ == "__main__":
     main()
