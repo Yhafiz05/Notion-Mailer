@@ -10,12 +10,23 @@ class PageDTO:
         civilite (str): The civility or title (e.g., Mr., Ms.) of the person related to the page.
         date_candidature (str): The date of the application or candidacy associated with the page.
     """
-    def __init__(self, id: str | None, etape: str | None, secteur: list[str | None], email: str | None, civilite: list[str | None], date_canditature: str | None):
+    def __init__(
+        self, id: str | None,
+        etape: str | None,
+        secteur: list[str | None],
+        nom_entreprise: str | None,
+        email: str | None,
+        civilite: list[str | None],
+        nom_famille: str | None,
+        date_canditature: str | None
+    ):
         self._id = id
         self._etape = etape
         self._secteur = secteur
+        self._nom_entreprise = nom_entreprise
         self._email = email
         self._civilite = civilite
+        self._nom_famille = nom_famille
         self._date_candidature = date_canditature
 
     # Getter and Setter for id
@@ -72,9 +83,20 @@ class PageDTO:
     def date_candidature(self, value):
         self._date_candidature = value
         
+    @property
+    def nom_entreprise(self):
+        return self._nom_entreprise
+    
+    @nom_entreprise.setter
+    def nom_entreprise(self, value):
+        self._nom_entreprise = value
+    
+    @property
+    def nom_famille(self):
+        return self._nom_famille
+    @nom_famille.setter
+    def nom_famille(self, value):
+        self._nom_famille = value
+        
     def __str__(self):
-        return (
-            f"PageDTO(id={self._id}, etape={self._etape}, secteur={self._secteur}, "
-            f"email={self._email}, civilite={self._civilite}, "
-            f"date_candidature={self._date_candidature})"
-        )
+        return f"PageDTO(id={self._id}, etape={self._etape}, secteur={self._secteur}, nom_entreprise={self._nom_entreprise}, email={self._email}, civilite={self._civilite}, nom_famille={self._nom_famille}, date_candidature={self._date_candidature})"

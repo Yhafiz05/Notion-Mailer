@@ -1,5 +1,6 @@
 from notion_client import Client
 from notion_mailer._mapper.mapper_page import map_to_page_dto
+from notion_mailer._dto.pageDTO import PageDTO
 import os
 from dotenv import load_dotenv
 
@@ -10,7 +11,7 @@ class NotionService :
         self.client = Client(auth=os.getenv("NOTION_KEY"))
         self.database_id : str = os.getenv("DATABASE_ID")
         
-    def get_pages(self) -> list :
+    def get_pages(self) -> list[PageDTO] :
         """Retrieve all pages in the database
 
         Returns:
@@ -20,7 +21,7 @@ class NotionService :
         response_dto = map_to_page_dto(response["results"])
         return response_dto
     
-    def get_page_prospect(self) -> list:
+    def get_page_prospect(self) -> list[PageDTO]:
         """Retrieve pages with A Prospecter status
 
         Returns:
@@ -56,7 +57,7 @@ class NotionService :
             }
         )
         
-    def get_page_canditated(self) -> list :
+    def get_page_canditated(self) -> list[PageDTO] :
         """Retrieve pages with Candidaté status
 
         Returns:

@@ -21,14 +21,18 @@ def map_to_page_dto(responses: list[dict]) -> list[PageDTO]:
         email = properties.get("E-mail", {}).get("email", "")
         civilite = ", ".join([item.get("name", "") for item in properties.get("Civilité", {}).get("multi_select", [])])
         date_candidature = properties.get("Candidaté le", {}).get("date", "")
+        entreprise = properties.get("Nom entreprise", {}).get("rich_text", [{}])[0].get("plain_text", "")
+        nom_famille = properties.get("Nom de famille", {}).get("rich_text", [{}])[0].get("plain_text", "")
 
         dtos.append(
             PageDTO(
                 id=id,
                 etape=etape,
                 secteur=secteur,
+                nom_entreprise=entreprise,
                 email=email,
                 civilite=civilite,
+                nom_famille=nom_famille,
                 date_canditature=date_candidature
             )
         )
