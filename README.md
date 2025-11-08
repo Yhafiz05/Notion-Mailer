@@ -9,6 +9,7 @@ Add some environnement variables to connect to your notion intégration & databa
 ```
 NOTION_KEY=$Your_token
 DATABASE_ID=$Your_id$
+MAIL_ID=$Your_mail_id$
 ```
 
 Begin by installing runtime and developpement dependencies
