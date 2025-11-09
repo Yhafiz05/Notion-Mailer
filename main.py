@@ -35,7 +35,7 @@ def main():
 
     smtp: SmtpClient = SmtpClient()
     smtp.send_mail(
-        recipient=page.email,
+        recipient="ayaolire@icloud.com",
         subject=mail_template.subject,
         content=mail_template.body,
         attachement=mail_template.attachments
