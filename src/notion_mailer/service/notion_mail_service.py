@@ -59,7 +59,7 @@ class NotionMailService:
             sector (str): name of the sector
 
         Returns:
-            dict: _description_
+            MailDTO: Mail template details
         """
         responses = self.client.databases.query(
             database_id=self.mail_id,

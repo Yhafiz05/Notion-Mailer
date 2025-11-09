@@ -7,6 +7,8 @@ from email.mime.multipart import MIMEMultipart
 import requests
 from email.mime.base import MIMEBase
 from email import encoders
+from email.mime.image import MIMEImage
+from notion_mailer.mailing.signature import signature_html
 
 class SmtpClient():
     
@@ -36,14 +38,27 @@ class SmtpClient():
         
         html_version = f"""
         <html>
-        <body>
+        <body style="font-size:11pt; font-family:Arial, sans-serif;">
         <p>{html_content}</p>
+        {signature_html}
         </body>
         </html>
         """
         msg.attach(MIMEText(content, "plain", "UTF-8"))
         msg.attach(MIMEText(html_version, "html", "utf-8"))
-                
+        dir = os.path.dirname(os.path.abspath(__file__))
+        image_path = os.path.join(dir,"data/image004.png")
+        logo_path = os.path.join(dir,"data/linkedln.png")
+        with open(image_path, "rb") as img:
+            signature_img = MIMEImage(img.read())
+            signature_img.add_header("Content-ID", "<signature_image>")
+            msg.attach(signature_img)
+
+        with open(logo_path, "rb") as img:
+            linkedin_icon = MIMEImage(img.read())
+            linkedin_icon.add_header("Content-ID", "<linkedin_icon>")
+            msg.attach(linkedin_icon)
+            
         if attachement:
             response = requests.get(attachement)
             file_content = response.content
