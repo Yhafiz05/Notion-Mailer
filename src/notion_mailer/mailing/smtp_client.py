@@ -7,7 +7,6 @@ from email.mime.multipart import MIMEMultipart
 import requests
 from email.mime.base import MIMEBase
 from email import encoders
-from email.mime.image import MIMEImage
 from notion_mailer.mailing.signature import signature_html
 
 class SmtpClient():

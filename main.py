@@ -6,6 +6,10 @@ from notion_mailer.mailing.smtp_client import SmtpClient
 def send_mail():
     client: NotionService = NotionService()
     pages = client.get_page_prospect()
+    if len(pages) == 0:
+        logger.info("No mails to send today...")
+        return
+    logger.info(f"Sending mails to {len(pages)} prospects...")
     for page in pages:
         try:
             mail : NotionMailService = NotionMailService()
@@ -26,6 +30,10 @@ def send_mail():
 def send_relance_mail():
     client: NotionService = NotionService()
     pages  = client.get_page_canditated_expired()
+    if len(pages) == 0:
+        logger.info("No relance mails to send today...")
+        return
+    logger.info(f"Sending relance mails to {len(pages)} candidated...")
     for page in pages:
         try:
             mail: NotionMailService = NotionMailService()
