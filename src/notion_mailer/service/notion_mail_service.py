@@ -83,3 +83,4 @@ class NotionMailService:
 
         mapped_mail = map_to_mail_dto(responses["results"])
         return mapped_mail[0]
+    

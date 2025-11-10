@@ -18,16 +18,37 @@ def send_mail():
                 content=mail_template.body,
                 attachement=mail_template.attachments
             )
+            client.update_page_status(page.id, "Candidaté")
+            client.update_date_candidature(page.id)
         except Exception as e:
             logger.error(f"Failed to send mail to {page.email}: {e}")
-        client.update_page_status(page.id, "Candidature envoyée")
-        
+
+def send_relance_mail():
+    client: NotionService = NotionService()
+    pages  = client.get_page_canditated_expired()
+    for page in pages:
+        try:
+            mail: NotionMailService = NotionMailService()
+            mail_template = mail.get_mails_relance_by_type(page.secteur)
+            mail_template.render_mail(page)
+            smtp: SmtpClient = SmtpClient()
+            smtp.send_mail(
+                recipient=page.email,
+                subject=mail_template.subject,
+                content=mail_template.body,
+                attachement=mail_template.attachments
+            )
+            client.update_page_status(page.id, "Première relance")
+            client.update_date_relance(page.id)
+        except Exception as e:
+            logger.error(f"Failed to send relance mail to {page.email}: {e}")
+            
 def main():
     client: NotionService = NotionService()
-    pages = client.get_page_prospect()
+    pages = client.get_page_canditated_expired()
     page = pages[0]
     print(page)
-    
+    """
     mail: NotionMailService = NotionMailService()
     mail_template = mail.get_mails_candidature_by_type(page.secteur)
     mail_template.render_mail(page)
@@ -35,11 +56,12 @@ def main():
 
     smtp: SmtpClient = SmtpClient()
     smtp.send_mail(
-        recipient="ayaolire@icloud.com",
+        recipient=page.email,
         subject=mail_template.subject,
         content=mail_template.body,
         attachement=mail_template.attachments
     )
+    """
     
 if __name__ == "__main__":
-    main()
+    send_relance_mail()

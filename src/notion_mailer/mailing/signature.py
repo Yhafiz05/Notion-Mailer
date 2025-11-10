@@ -3,7 +3,7 @@ signature_html = """
   <tr>
     <!-- Photo -->
     <td style="vertical-align: middle; padding-right: 15px;">
-      <img src="cid:signature_image" alt="Méline BIGUET" width="130" style="border-radius: 10px; display:block;">
+      <img src="https://raw.githubusercontent.com/Yhafiz05/Notion-Mailer/main/src/notion_mailer/mailing/data/image004.png" alt="Méline BIGUET" width="130" style="border-radius: 10px; display:block;">
     </td>
 
     <!-- Texte -->
@@ -27,7 +27,8 @@ signature_html = """
       </p>
       <p style="margin-top:6px;">
         <a href="https://www.linkedin.com/in/melinebiguet/" target="_blank">
-          <img src="cid:linkedin_icon" alt="LinkedIn" width="20" style="display:inline-block;">
+          <img src="https://raw.githubusercontent.com/Yhafiz05/Notion-Mailer/main/src/notion_mailer/mailing/data/linkedln.png
+" alt="LinkedIn" width="20" style="display:inline-block;">
         </a>
       </p>
     </td>
