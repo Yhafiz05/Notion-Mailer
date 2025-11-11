@@ -2,3 +2,4 @@ notion-client==2.5.0
 dotenv
 langchain==1.0.2
 langchain-openai==1.0.1
+PyQt6==6.10.0
